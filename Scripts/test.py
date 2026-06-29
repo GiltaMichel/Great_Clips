@@ -1,9 +1,15 @@
 import time
-
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+from selenium import webdriver
+
+
+#driver = webdriver.Chrome()
 #driver.get('https://www.krweeklyad.com/great-clips-coupon-7-99/') #####
 driver.get('https://www.krweeklyad.com/great-clips-coupon-9-99/')
 #driver.get("https://www.krweeklyad.com/great-clips-coupon-3-off/")
