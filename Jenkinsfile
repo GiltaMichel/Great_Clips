@@ -34,7 +34,8 @@ pipeline {
                 script {
                     // Ensures your code meets PEP 8 standards (fails build if major syntax errors exist)
                     // Note: Ensure 'flake8' is listed in your requirements.txt
-                    sh "./${VENV_DIR}/bin/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics"
+                    sh "./${VENV_DIR}/bin/flake8 . "
+                    // --count --select=E9,F63,F7,F82 --show-source --statistics
                 }
             }
         }
