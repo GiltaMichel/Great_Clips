@@ -4,11 +4,18 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
-
 #driver.get('https://www.krweeklyad.com/great-clips-coupon-7-99/') #####
 driver.get('https://www.krweeklyad.com/great-clips-coupon-9-99/')
 #driver.get("https://www.krweeklyad.com/great-clips-coupon-3-off/")
 driver.maximize_window()
+# Hide or remove iframe containers commonly hosting display ads
+driver.execute_script("""
+    var ads = document.querySelectorAll('iframe, .adsbygoogle, [id^="google_ads"]');
+    for (var i = 0; i < ads.length; i++) {
+        ads[i].style.display = 'none'; // Or ads[i].remove();
+    }
+""")
+
 time.sleep(5)
 main_handle = driver.current_window_handle
 selected =[]
