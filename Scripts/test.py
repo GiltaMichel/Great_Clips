@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
 
-#driver.get('https://www.krweeklyad.com/great-clips-coupon-7-99/')
+#driver.get('https://www.krweeklyad.com/great-clips-coupon-7-99/') #####
 driver.get('https://www.krweeklyad.com/great-clips-coupon-9-99/')
 driver.maximize_window()
 time.sleep(5)
