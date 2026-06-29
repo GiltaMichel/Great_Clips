@@ -35,7 +35,7 @@ pipeline {
                 script {
                     // Runs tests using pytest and generates a JUnit XML report
                     // Note: Ensure 'pytest' is listed in your requirements.txt
-                    sh "./${VENV_DIR}/bin/python3 test.py | tee output.txt"
+                    sh "./${VENV_DIR}/bin/python3 Scripts/test.py | tee output.txt"
                         }
                     }
 
