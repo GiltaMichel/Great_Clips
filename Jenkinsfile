@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }
-        '''
+
         stage('Lint & Code Quality') {
             steps {
                 echo 'Running Flake8 syntax and style checks...'
@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-        '''
+
 
         stage('Run Tests') {
             steps {
