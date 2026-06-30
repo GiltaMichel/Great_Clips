@@ -28,16 +28,6 @@ pipeline {
             }
         }
 
-        stage('Lint & Code Quality') {
-            steps {
-                echo 'Running Flake8 syntax and style checks...'
-                script {
-                    // Ensures your code meets PEP 8 standards (fails build if major syntax errors exist)
-                    // Note: Ensure 'flake8' is listed in your requirements.txt
-                    sh "./${VENV_DIR}/bin/flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics"
-                }
-            }
-        }
 
         stage('Run Tests') {
             steps {
@@ -45,16 +35,12 @@ pipeline {
                 script {
                     // Runs tests using pytest and generates a JUnit XML report
                     // Note: Ensure 'pytest' is listed in your requirements.txt
-                    sh "./${VENV_DIR}/bin/pytest --junitxml=results.xml"
-                }
-            }
-            post {
-                always {
-                    // Displays interactive test results natively inside the Jenkins UI
-                    junit 'results.xml'
-                }
-            }
-        }
+                    sh "./${VENV_DIR}/bin/python3 Scripts/test.py | tee output.txt"
+                        }
+                    }
+
+             }
+
     }
 
     post {

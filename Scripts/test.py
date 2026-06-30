@@ -1,13 +1,33 @@
 import time
-
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
+chrome_options = Options()
+chrome_options.add_argument("--headless=new")  # Required for servers without a display GUI
+chrome_options.add_argument("--no-sandbox")      # Bypass OS security model
+chrome_options.add_argument("--disable-gpu")
 
-#driver.get('https://www.krweeklyad.com/great-clips-coupon-7-99/')
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+
+from selenium import webdriver
+
+
+#driver = webdriver.Chrome()
+#driver.get('https://www.krweeklyad.com/great-clips-coupon-7-99/') #####
 driver.get('https://www.krweeklyad.com/great-clips-coupon-9-99/')
+#driver.get("https://www.krweeklyad.com/great-clips-coupon-3-off/")
 driver.maximize_window()
+# Hide or remove iframe containers commonly hosting display ads
+driver.execute_script("""
+    var ads = document.querySelectorAll('iframe, .adsbygoogle, [id^="google_ads"]');
+    for (var i = 0; i < ads.length; i++) {
+        ads[i].style.display = 'none'; // Or ads[i].remove();
+    }
+""")
+
 time.sleep(5)
 main_handle = driver.current_window_handle
 selected =[]
